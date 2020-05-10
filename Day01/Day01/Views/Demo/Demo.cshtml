@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "Demo";
+    int[] mang = { 1, 3, 5, 7, 9 };
+
+    var chuoi = $"Các phần tử trong mảng: {mang[0]} <br>" +
+        $"{string.Join(", ", mang)}";
+}
+
+<h1>Demo</h1>
+@chuoi
+<div>Mảng có @mang.Length phần tử</div>
+<div>@string.Join("; ", mang)</div>
+
