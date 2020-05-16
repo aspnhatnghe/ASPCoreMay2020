@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Buoi02.Models.HangHoa>
+
+@{
+    ViewData["Title"] = "DanhSach";
+}
+
+<h1>DanhSach</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<h3>Có @Model.Count() phần tử</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaHangHoa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenHangHoa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DonGia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GiamGia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GiaBan)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.MaHangHoa
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenHangHoa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GiamGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GiaBan)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

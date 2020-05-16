@@ -9,6 +9,11 @@ namespace Buoi02.Controllers
 {
     public class DemoController : Controller
     {
+        public IActionResult DemoHinhHoc()
+        {
+            return View();
+        }
+
         public IActionResult Index()
         {
             return View();
