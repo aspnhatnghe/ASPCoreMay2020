@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    //Khai báo hàng hóa 1
+    HangHoa hh = new HangHoa
+    {
+        MaHangHoa = 1,
+        TenHangHoa = "DELL Latitude",
+        DonGia = 22190000,
+        GiamGia = 0.05
+    };
+
+    //ví dụ 2
+    HangHoa hh2 = new HangHoa();
+    hh2.TenHangHoa = "Bia Sài Gòn";
+    hh2.DonGia = 13000;
+    hh2.MaHangHoa = 2;
+    //hh2.GiaBan = 9900; //Sai
+}
+<div>
+    @hh.TenHangHoa - @hh.GiaBan
+</div>
+<div>
+    @hh2.TenHangHoa - @hh2.GiaBan
+</div>
+host/Demo <br />
+host/Demo/Index <br />
+<h1>Index</h1>
+
