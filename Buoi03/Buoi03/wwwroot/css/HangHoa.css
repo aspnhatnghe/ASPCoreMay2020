@@ -1,0 +1,17 @@
+﻿.hh-image{ width:90%; margin-top:5px;}
+.hh-icon{
+    position:absolute;top:0; right:0;
+    width:50px;
+}
+.hh-box{
+    position:relative;
+    width: 220px; height:300px;
+    border: 1px solid blue;
+    text-align:center;
+    display:inline-block;
+    margin: 5px 2px;
+}
+.hh-box:hover{
+    border-radius: 10px;
+    box-shadow: 0 0px 10px red;
+}
