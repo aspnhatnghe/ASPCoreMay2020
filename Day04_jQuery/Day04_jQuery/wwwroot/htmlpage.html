@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script>
+        //alert('Hello world!');
+        console.log('Render head');
+        $(document).ready(function () {
+            console.log('Document ready');
+            $("button").click(function () {
+                alert($(this).html());
+            });
+        });
+    </script>
+</head>
+<body>
+    <script>console.log('Render body');</script>
+    <button type="button">
+        Hello
+    </button>
+    <button type="button">Bye</button>
+    <div id="mydiv">
+        Hello <b>Cô Ba</b> Sài Gòn
+    </div>
+    <script>
+        $(function () {
+            var obj = $("#mydiv");
+            console.log(obj.html());
+            console.log(obj.text());
+            obj.text("Hello <h3>Sài Gòn</h3>");
+        });
+    </script>
+</body>
+</html>
