@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Ca rô</title>
+    <script src="lib/jquery/dist/jquery.js"></script>
+
+</head>
+<body>
+    <button type="button" id="btnShow">Show</button>
+    <button type="button" id="btnHide">Hide</button>
+    <button type="button" id="btnToggle">Toggle</button>
+    <table id="tblBanCo">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <style>
+        td{
+            width:25px; height:25px;
+            border: 1px dotted blue;
+            text-align: center;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#btnShow").click(function () {
+                $("#tblBanCo").show(1500);
+            });
+            $("#btnHide").click(function () {
+                $("#tblBanCo").hide(1500);
+            });
+            $("#btnToggle").click(function () {
+                $("#tblBanCo").toggle(1500);
+            });
+
+            var gt = "X";
+            $("td").click(function () {
+                if ($(this).html() == "") {
+                    $(this).html(gt);
+                    gt = gt == "X" ? "O" : "X";
+                }
+            });
+        });//end document.ready
+    </script>
+</body>
+</html>
