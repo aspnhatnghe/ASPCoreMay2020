@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>jQuery UI</title>
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/jquery-ui-1.12.1/jquery-ui.js"></script>
+    <link href="lib/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet" />
+</head>
+<body>
+    Từ ngày: <input type="text" id="TuNgay" />
+    <script>
+        $(function () {
+            $("#TuNgay").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                maxDate: 0,
+                minDate: "-3M"//-100
+            });
+        });
+    </script>
+</body>
+</html>
