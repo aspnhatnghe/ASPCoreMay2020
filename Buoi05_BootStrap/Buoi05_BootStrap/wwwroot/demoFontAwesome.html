@@ -7,6 +7,7 @@
     <link href="lib/fontawesome-free-5.13.0-web/css/all.css" rel="stylesheet" />
     <script src="lib/jquery/dist/jquery.js"></script>
     <script src="lib/fontawesome-free-5.13.0-web/js/all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
 </head>
 <body>
@@ -32,7 +33,105 @@
                     <input name="MatKhau" type="password" class="form-control" />
                 </div>
             </div>
+            <div class="row">
+                <div class="col-3 text-right">
+                    Giới tính
+                </div>
+                <div class="col-9">
+                    <div class="form-check form-check-inline">
+                        <input type="radio" name="GioiTinh" id="GTNu" value="0" checked="checked" class="form-check-input" />
+                        <label class="form-check-label" for="GTNu">Nữ</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" name="GioiTinh" id="GTNam" value="1" class="form-check-input" />
+                        <label class="form-check-label" for="GTNam">Nam</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3 text-right">
+                    Sở thích
+                </div>
+                <div class="col-9">
+                    <div class="form-check-inline">
+                        <input type="checkbox" name="SoThich" value="DL" class="form-check-input" />Du lịch
+                    </div>
+                    <div class="form-check-inline">
+                        <input type="checkbox" name="SoThich" value="DS" class="form-check-input" />Đọc sách
+                    </div>
+                    <div class="form-check-inline">
+                        <input type="checkbox" name="SoThich" value="TT" class="form-check-input" />Thể thao
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3 text-right">
+                    Tỉnh thành
+                </div>
+                <div class="col-9 form-group">
+                    <select name="TinhThanh" class="form-control">
+                        <option value="HN">Hà Nội</option>
+                        <option value="SG">Sài Gòn</option>
+                        <option value="CT">Cần Thơ</option>
+                        <option value="NT">Nha Trang</option>
+                        <option value="DN">Đà Nẵng</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 text-right">
+                    Hình
+                </div>
+                <div class="col-9 form-group">
+                    <input type="file" name="Hinh" required class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 text-right">
+                    Thông tin thêm
+                </div>
+                <div class="col-9">
+                    <textarea name="ThongTinThem" rows="5" class="form-control">
+                    </textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <button class="btn btn-primary">
+                        Đăng ký
+                    </button>
+                    <button class="btn btn-danger" type="reset">
+                        Nhập lại
+                    </button>
+                </div>
+            </div>
         </form>
+        <button type="button" id="Demo">Sweet Alert</button>
     </div>
+
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        $(document).ready(function () {
+            $("#Demo").click(function () {
+                Swal.fire({
+                    title: '<strong>HTML <u>example</u></strong>',
+                    icon: 'info',
+                    html:
+                        'You can use <b>bold text</b>',
+                    showCloseButton: true,
+                    showCancelButton: true
+                });
+            });
+
+            $('textarea[name="ThongTinThem"]').summernote({
+                height: 200
+            });
+        });
+    </script>
 </body>
 </html>
