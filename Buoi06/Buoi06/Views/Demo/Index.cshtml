@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    var dsLoai = new string[] { "dien-thoai", "may-tinh-bang", "laptop" };
+    var dsSanPham = new string[] { "sam-sung", "sony", "toshiba", "lg" };
+}
+
+<h1>Index</h1>
+@foreach (var loai in dsLoai)
+{
+    <div>
+        @foreach (var sp in dsSanPham)
+        {
+            <a href="/@loai/@sp" target="_blank">
+                @sp : @loai
+            </a><br />
+        }
+    </div>
+}
+
