@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Buoi06.Models.HangHoa>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Tạo mới</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaHH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenHH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DonGia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GiamGia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GiaBan)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaHH</td>
+                <td>@item.TenHH</td>
+                <td>
+                    @item.DonGia.ToString("#,##0") đ
+                </td>
+                <td>@item.GiamGia %</td>
+                <td>
+                    @item.GiaBan.ToString("#,##0") đ
+                </td>
+                <td>
+                    <a asp-action="Edit" 
+                       asp-route-id="@item.MaHH" class="btn btn-primary">Sửa</a>
+                    <a asp-action="Delete" 
+                       asp-route-ma="@item.MaHH" class="btn btn-danger">Xóa</a>                    
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
