@@ -4,8 +4,8 @@
 }
 
 <h1>Máy tính</h1>
-<form>
-    <input name="ToanHang1" placeholder="Số thứ 1" type="number" />
+<form asp-action="Calculate" asp-controller="Calculator">
+    <input name="ToanHang1" placeholder="Số thứ 1" type="number" value="@ViewBag.A" />
     <select name="PhepToan">
         <option value="+">+</option>
         <option value="-">-</option>
@@ -14,8 +14,8 @@
         <option value="^">^</option>
         <option value="%">%</option>
     </select>
-    <input name="ToanHang2" placeholder="Số thứ 2" type="number" />
+    <input name="ToanHang2" placeholder="Số thứ 2" type="number" value="@ViewBag.B" />
     <button>=</button>
-    <input class="disabled" placeholder="Kết quả" />
+    <input class="disabled" placeholder="Kết quả" value="@ViewBag.KetQua" />
 </form>
 
