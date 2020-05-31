@@ -1,0 +1,51 @@
+﻿@model Buoi07.Models.HocVien
+
+@{
+    ViewData["Title"] = "ThongTin";
+}
+
+<h1>Thông tin Học viên</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ThongTin">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MaSo" class="control-label"></label>
+                <input asp-for="MaSo" class="form-control" />
+                <span asp-validation-for="MaSo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TenHocVien" class="control-label"></label>
+                <input asp-for="TenHocVien" class="form-control" />
+                <span asp-validation-for="TenHocVien" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SoDienThoai" class="control-label"></label>
+                <input asp-for="SoDienThoai" class="form-control" />
+                <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiemTrungBinh" class="control-label"></label>
+                <input asp-for="DiemTrungBinh" class="form-control" />
+                <span asp-validation-for="DiemTrungBinh" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="GioiTinh" /> @Html.DisplayNameFor(model => model.GioiTinh)
+                </label>
+            </div>
+            <div class="form-group">
+                <input name="Ghi" type="submit" value="Ghi file Text" class="btn btn-primary" />
+                <input name="Ghi" type="submit" value="Ghi file JSON" class="btn btn-success" />
+                <a asp-action="DocFileText" class="btn btn-info">Đọc file Text</a>
+                <a asp-action="DocFileJSON" class="btn btn-secondary">Đọc file JSON</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
