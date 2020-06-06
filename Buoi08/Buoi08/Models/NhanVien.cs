@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace Buoi08.Models
 
         [Display(Name ="Mã nhân viên")]
         [Required(ErrorMessage ="*")]
+        [Remote(action:"KiemTraMaNhanVien", controller:"NhanVien")]
         public int MaNhanVien { get; set; }
 
         [Display(Name = "Tên nhân viên")]
@@ -25,6 +27,8 @@ namespace Buoi08.Models
         public string Website { get; set; }
 
         [Display(Name ="Ngày sinh")]
+        [DataType(DataType.Date)]
+        [KiemTraNgaySinh]
         public DateTime NgaySinh { get; set; }
 
         [Display(Name ="Giới tính")]
@@ -44,11 +48,14 @@ namespace Buoi08.Models
         [DataType(DataType.MultilineText)]
         public string ThongTinThem { get; set; }
         
-        [DataType(DataType.Password)]        
+        //[DataType(DataType.Password)]
+        [Required(ErrorMessage ="*")]
         [MinLength(4, ErrorMessage ="Tối thiểu 4 kí tự")]
+        [RegularExpression("[0-9]+[A-Z]+[a-z]+[@#$%^&*~]+", ErrorMessage ="Mật khẩu phải chứa ít nhất 1 chữ số, 1 chữ hoa, 1 chữ thường, 1 ký tự đặc biệt")]
         public string MatKhau { get; set; }
 
-        [DataType(DataType.Password)]
+        //[DataType(DataType.Password)]
+        [Required(ErrorMessage = "*")]
         [Compare("MatKhau", ErrorMessage ="Mật khẩu không khớp")]
         public string NhapLaiMatKhau { get; set; }
     }

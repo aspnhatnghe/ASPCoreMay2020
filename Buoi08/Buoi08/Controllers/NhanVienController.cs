@@ -9,6 +9,19 @@ namespace Buoi08.Controllers
 {
     public class NhanVienController : Controller
     {
+        public IActionResult KiemTraMaNhanVien(int MaNhanVien)
+        {
+            //giả sử tập mã NV đang có (mai mốt lấy ở CSDL)
+            int[] dsMa = new int[] { 777, 2222, 999, 123, 369, 1515 };
+
+            if(dsMa.Contains(MaNhanVien))
+            {
+                return Json("Mã này đã có");
+            }
+
+            return Json(true);
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -22,7 +35,7 @@ namespace Buoi08.Controllers
         [HttpPost]
         public IActionResult ThemNhanVien(NhanVien nv)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("loi", "Server chưa hợp lệ");
             }
