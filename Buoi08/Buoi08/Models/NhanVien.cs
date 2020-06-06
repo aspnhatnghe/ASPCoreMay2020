@@ -44,11 +44,12 @@ namespace Buoi08.Models
         [DataType(DataType.MultilineText)]
         public string ThongTinThem { get; set; }
         
-        [DataType(DataType.Password)]
+        [DataType(DataType.Password)]        
+        [MinLength(4, ErrorMessage ="Tối thiểu 4 kí tự")]
         public string MatKhau { get; set; }
 
         [DataType(DataType.Password)]
-        [Compare("MatKhau")]
+        [Compare("MatKhau", ErrorMessage ="Mật khẩu không khớp")]
         public string NhapLaiMatKhau { get; set; }
     }
 }
