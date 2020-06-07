@@ -1,0 +1,146 @@
+﻿
+@{
+    ViewData["Title"] = "Validate";
+}
+
+<h1>Validate</h1>
+
+<form id="formDangKy" method="post">
+    <h2 class="text-center text-danger">
+        Đăng ký Thành viên
+    </h2>
+    <div class="row m-1">
+        <div class="col-4 col-md-3 text-right">Mã sinh viên</div>
+        <div class="col-8 col-md-9">
+            <input name="MaSV" placeholder="Mã sinh viên" class="w-100" />
+        </div>
+    </div>
+    <div class="row m-1">
+        <div class="col-4 col-md-3 text-right">Họ tên</div>
+        <div class="col-8 col-md-9">
+            <input name="HoTen" placeholder="Họ tên Sinh viên" class="w-100" />
+        </div>
+    </div>
+    <div class="row m-1">
+        <div class="col-4 col-md-3 text-right">Ngày sinh</div>
+        <div class="col-8 col-md-9">
+            <input name="NgaySinh" class="w-100" />
+        </div>
+    </div>
+    <div class="row m-1">
+        <div class="col-4 col-md-3 text-right">Email</div>
+        <div class="col-8 col-md-9">
+            <input name="Email" placeholder="Email" class="w-100" />
+        </div>
+    </div>
+    <div class="row m-1">
+        <div class="col-4 col-md-3 text-right">Xác nhận email</div>
+        <div class="col-8 col-md-9">
+            <input name="XacNhanEmail" placeholder="Xác nhận email" class="w-100" />
+        </div>
+    </div>
+    <div class="row m-1">
+        <div class="col-4 col-md-3 text-right">Số tài khoản</div>
+        <div class="col-8 col-md-9">
+            <input name="SoTaiKhoan" placeholder="Số tài khoản" class="w-100" />
+        </div>
+    </div>
+    <div class="row m-1">
+        <div class="col-4 col-md-3 text-right">Hình</div>
+        <div class="col-8 col-md-9">
+            <input type="file" name="Hinh" />
+        </div>
+    </div>
+    <div class="row m-1">
+        <div class="col-4 col-md-3 text-right">Điểm</div>
+        <div class="col-8 col-md-9">
+            <input name="Diem" placeholder="Điểm" class="w-100" />
+        </div>
+    </div>
+    <div class="row m-1">
+        <div class="col-4 col-md-3 text-right">Hệ số</div>
+        <div class="col-8 col-md-9">
+            <input name="HeSo" placeholder="Hệ số" class="w-100" />
+        </div>
+    </div>
+    <div class="row m-1">
+        <div class="col-4 col-md-3 text-right">Mã bảo mật</div>
+        <div class="col-8 col-md-9">
+            <span></span>
+            <input name="MaBaoMat" placeholder="Mã bảo mật" class="w-75" />
+            <span class="text-danger" id="ma_bao_mat">
+                @ViewBag.MaNgauNhien
+            </span>
+            <button type="button" class="btn btn-primary" id="refreshSecurityCode">Lấy mã mới</button>
+        </div>
+    </div>
+    <div class="row m-1">
+        <div class="col-4 col-md-3 text-right">Thông tin thêm</div>
+        <div class="col-8 col-md-9">
+            <textarea name="ThongTinThem" class="w-100"></textarea>
+        </div>
+    </div>
+    <div class="row m-1">
+        <div class="col-4 col-md-3 text-right"></div>
+        <div class="col-8 col-md-9">
+            <button class="btn btn-success">Đăng ký</button>
+            <button class="btn btn-danger" type="reset">Nhập lại</button>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation/dist/additional-methods.js"></script>
+    <script>
+        //B1. Định nghĩa hàm kiểm tra
+        function kiemTraEmail(value, element) {
+            let pattern = /^[a-z]+([.+-_][a-z]+)*@@[a-z]{2,}(\.[a-z]{2,6})+$/;
+
+            return pattern.test(value) || this.optional(element);
+        }
+
+        //Bước 2: thêm vào jquery validate
+        $.validator.addMethod("emailCorrect", kiemTraEmail, "Chưa đúng định dạng email");
+
+        $(function () {
+            $("#refreshSecurityCode").click(function () {
+                //gửi ajax lên server sinh mã bảo mật mới
+                $.ajax({
+                    url: "/Home/SinhMaBaoMat",
+                    success: function (data) {
+                        $("#ma_bao_mat").html(data);
+                    }
+                });
+            });
+
+            $("#formDangKy").validate({
+                rules: {
+                    Email: {
+                        required: true,
+                        //email: true,
+                        emailCorrect: true
+                    },
+                    MaSV: { required: true, minlength: 6 },
+                    HoTen: { required: true },
+                    NgaySinh: { date: true },
+
+                    XacNhanEmail: { equalTo: "input[name='Email']" },
+                    SoTaiKhoan: { creditcard: true },
+                    Hinh: { extension: "gif|png|jpg" },
+                    Diem: { number: true, range: [0, 10] },
+                    HeSo: { digits: true, min: 1 },
+                    ThongTinThem: { maxlength: 255 },
+                    MaBaoMat: { remote: "/Home/KiemTraMaBaoMat" }
+                },
+                messages: {
+                    Diem: { number: "Nhập số thực", range: "Điểm từ 0 đến 10" },
+                    Hinh: { extension: "Chỉ chấp nhận gif|png|jpg" },
+                    XacNhanEmail: { equalTo: "Email không khớp" },
+                    HoTen: { required: "*" },
+                    MaSV: { required: "*", minlength: "Tối thiểu 6 kí tự" }
+                }
+            });
+        });
+    </script>
+}

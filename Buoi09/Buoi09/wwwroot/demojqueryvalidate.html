@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/jquery-validation/dist/jquery.validate.js"></script>
+
+    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+
+</head>
+<body>
+    <form id="myform">
+        Name: <input name="txtName" /><br />
+        Age: <input name="txtAge" /><br />
+        <button>Send</button>
+    </form>
+    <script>
+        $(function () {
+            $("#myform").validate({
+                rules: {
+                    txtName: {
+                        required: true,
+                        minlength: 4
+                    },
+                    txtAge: {
+                        digits: true,
+                        range: [18, 60]
+                    }
+                },
+                messages: {
+                    txtName: {
+                        minlength: "Tối thiểu 4 kí tự",
+                        required : "*"
+                    }
+                }
+            });
+        });
+    </script>
+    <style>
+        label.error{color:red;}
+    </style>
+
+</body>
+</html>
