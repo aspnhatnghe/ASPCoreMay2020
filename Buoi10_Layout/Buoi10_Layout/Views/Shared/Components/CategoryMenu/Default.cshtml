@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Buoi10_Layout.Models.Product>
+
+<div class="card">
+    <div class="card-body">
+        @foreach (var sp in Model)
+        {
+            <a class="list-group-item">@sp.ProductName</a>
+        }
+    </div>
+</div>

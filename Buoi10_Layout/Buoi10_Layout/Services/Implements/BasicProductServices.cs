@@ -9,14 +9,20 @@ namespace Buoi10_Layout.Services.Implements
 {
     public class BasicProductServices : IProductServices
     {
-        public void AddProduct(Product product)
+        public static List<Product> products = new List<Product>();
+        public void AddProduct(Product sp)
         {
-            throw new NotImplementedException();
+            products.Add(sp);
         }
 
-        public void DeleteProduct(int productId)
+        public void DeleteProduct(int masp)
         {
-            throw new NotImplementedException();
+            //LINQ
+            var sanpham = products.SingleOrDefault(p => p.ProductId == masp);
+            if(sanpham != null)
+            {
+                products.Remove(sanpham);
+            }
         }
 
         public Product FindById(int productId)
@@ -26,7 +32,7 @@ namespace Buoi10_Layout.Services.Implements
 
         public IEnumerable<Product> GetAll()
         {
-            throw new NotImplementedException();
+            return products;
         }
 
         public void UpdateProduct(Product product)

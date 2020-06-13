@@ -16,7 +16,7 @@
         <header class="bg-danger">
             #HEADER
         </header>
-        
+
         <nav></nav>
 
         <div class="row">
@@ -24,21 +24,23 @@
                 LEFT MENU
                 @RenderSection("ABC", required: true)
 
-                @{
-                    var danhMuc = new DanhMuc
-                    {
-                        TenDanhMuc = "Điện thoại",
-                        SanPham = new string[] { "LG", "SONY", "Samsung", "Vin" }
-                    };
-                }
-                @await Html.PartialAsync("_DanhMuc", danhMuc)
+                @await Component.InvokeAsync("CategoryMenu")
+
+                @*@{
+            var danhMuc = new DanhMuc
+            {
+                TenDanhMuc = "Điện thoại",
+                SanPham = new string[] { "LG", "SONY", "Samsung", "Vin" }
+            };
+        }
+        @await Html.PartialAsync("_DanhMuc", danhMuc)*@
 
             </aside>
             <div class="col-md-9" id="mycontent">
                 @RenderBody()
             </div>
         </div>
-        <footer class="text-center text-success"+>
+        <footer class="text-center text-success" +>
             Bản quyền thuộc về ABC &reg; 2020
         </footer>
     </div>
