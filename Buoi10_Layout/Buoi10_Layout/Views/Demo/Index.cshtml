@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<h2>Nhất nghệ demo Layout</h2>
+
+@section ABC{ 
+    <div class="list-group">
+        <a href="" class="list-group-item">Bia</a>
+        <a href="" class="list-group-item">Coca</a>
+    </div>
+}
+
+@{ 
+    var danhMuc = new DanhMuc
+    {
+        TenDanhMuc = "Cafe",
+        SanPham = new string[] {"Highland", "McDonal", "Phố", "Ông Bầu"}
+    };
+}
+@await Html.PartialAsync("_DanhMuc", danhMuc)

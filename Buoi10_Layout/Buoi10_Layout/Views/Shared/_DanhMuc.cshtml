@@ -1,0 +1,13 @@
+﻿@model Buoi10_Layout.Models.DanhMuc
+
+<div class="card">
+    <div class="card-header bg-success">
+        @Model.TenDanhMuc
+    </div>
+    <div class="card-body">
+        @foreach(var sp in Model.SanPham)
+        {
+            <a class="list-group-item">@sp</a>
+        }
+    </div>
+</div>
