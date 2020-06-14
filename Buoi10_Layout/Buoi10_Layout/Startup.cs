@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Buoi10_Layout.Services.Implements;
 using Buoi10_Layout.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -28,6 +29,13 @@ namespace Buoi10_Layout
             services.AddControllersWithViews();
             //khai báo dịch vụ để sử dụng
             services.AddTransient<IProductServices, BasicProductServices>();
+
+            services.AddTransient<ITransientService, MyService>();
+            services.AddScoped<IScopedService, MyService>();
+            services.AddSingleton<ISingletonService, MyService>();
+
+            //đăng ký sử dụng AutoMapper
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

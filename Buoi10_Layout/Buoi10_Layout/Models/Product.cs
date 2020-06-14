@@ -11,4 +11,13 @@ namespace Buoi10_Layout.Models
         public string ProductName { get; set; }
         public double Price { get; set; }
     }
+
+    public class ProductModel
+    {
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
+        public double Price { get; set; }
+        public double Discount { get; set; }
+        public double Quantity { get; set; }
+    }
 }

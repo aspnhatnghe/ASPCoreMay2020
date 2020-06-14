@@ -6,20 +6,24 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Buoi10_Layout.Models;
+using Buoi10_Layout.Services.Interfaces;
 
 namespace Buoi10_Layout.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private ISingletonService _service;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ISingletonService service)
         {
             _logger = logger;
+            _service = service;
         }
 
         public IActionResult Index()
         {
+            ViewBag.Service = _service.GetID();
             return View();
         }
 
