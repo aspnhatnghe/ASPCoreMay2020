@@ -1,0 +1,26 @@
+﻿@using MyeStoreProject.ViewModels
+@model IEnumerable<HangHoaViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+<link href="~/css/HangHoa.css" rel="stylesheet" />
+
+<div>
+    Số sản phẩm mỗi trang:
+    <select name="PageCount" asp-items="@ViewBag.Pager">
+    </select>
+</div>
+
+<div class="container">
+    @foreach(var hh in Model)
+    {
+        <div class="hh-box">
+            <img class="hh-image" src="~/Hinh/@hh.Hinh" />
+            <h2>@hh.TenHh</h2>
+            <h3 class="text-danger">
+                @hh.GiaBan.ToString("#,##0") đ
+            </h3>
+        </div>
+    }
+</div>
+

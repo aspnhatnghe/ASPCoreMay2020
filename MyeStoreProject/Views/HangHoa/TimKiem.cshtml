@@ -1,0 +1,30 @@
+﻿@using MyeStoreProject.ViewModels
+@model IEnumerable<HangHoaViewModel>
+@{
+    ViewData["Title"] = "TimKiem";
+}
+
+<h1>Tìm kiếm</h1>
+<form asp-action="TimKiem">
+    Cần tìm: <input name="Keyword" placeholder="Nhập tên hàng hóa cần tìm" /><br />
+    Giá từ: <input type="number" name="GiaTu" min="0" />
+    đến: <input type="number" name="GiaDen" min="0" />
+    <button class="btn btn-primary">Tìm</button>
+</form>
+
+@if(Model != null)
+{
+    <div>Có <span class="text-danger">@Model.Count()</span> hàng hóa</div>
+    <table>
+        @foreach(var hh in Model)
+        {
+            <tr>
+                <td>@hh.MaHh</td>
+                <td>@hh.TenHh</td>
+                <td><img src="~/Hinh/@hh.Hinh" height="80" /></td>
+                <td>@hh.DonGia.ToString("#,##0") đ</td>
+            </tr>
+        }
+    </table>
+}
+
