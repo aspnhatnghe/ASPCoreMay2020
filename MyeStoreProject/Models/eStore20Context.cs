@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+using MyeStoreProject.ViewModels;
 
 namespace MyeStoreProject.Models
 {
@@ -29,6 +31,7 @@ namespace MyeStoreProject.Models
         public virtual DbSet<NhaCungCap> NhaCungCap { get; set; }
         public virtual DbSet<NhanVien> NhanVien { get; set; }
         public virtual DbSet<YeuThich> YeuThich { get; set; }
+        public DbQuery<ChiTietHoaDonViewModel> ChiTietHoaDonViewModels { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -441,6 +444,12 @@ namespace MyeStoreProject.Models
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Favorites_Customers");
             });
+
+            //nếu là code first
+            //modelBuilder.Query(@"create view ChiTietHoaDonView AS select cthd.MaHD, lo.TenLoai, hh.TenHH, cthd.DonGia, cthd.SoLuong, cthd.GiamGia, 	cthd.DonGia * cthd.SoLuong * (1 - cthd.GiamGia) 	as ThanhTien from ChiTietHD cthd JOIN HangHoa hh 	ON hh.MaHH = cthd.MaHH oin Loai lo ON lo.MaLoai = hh.MaLoai");
+
+            //OnModelCreating()
+            modelBuilder.Query<ChiTietHoaDonViewModel>().ToView("ChiTietHoaDonView");
 
             OnModelCreatingPartial(modelBuilder);
         }

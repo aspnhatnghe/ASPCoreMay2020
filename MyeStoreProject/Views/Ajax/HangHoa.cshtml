@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "HangHoa";
+}
+
+<h1>Tìn kiếm Hàng hóa</h1>
+<input id="txtSearch" placeholder="Nhập từ khóa..." />
+<div id="result" class="border"></div>
+
+@section Scripts{
+    <script>
+        $(function () {
+            //gắn sự kiện nhả phím
+            $("#txtSearch").keyup(function () {
+                $.ajax({
+                    url: "/Ajax/Search",
+                    type: "post",
+                    data: {
+                        "Keyword": $(this).val().trim().toLowerCase()
+                    },
+                    success: function (dataReturn) {
+                        $("#result").html(dataReturn);
+                    },
+                    error: function (xhr) {
+                        alert("Lỗi");
+                        console.log(xhr);
+                    }
+                });
+            });
+        });
+    </script>
+}
