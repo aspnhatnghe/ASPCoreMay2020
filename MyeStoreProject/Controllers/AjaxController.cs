@@ -17,9 +17,31 @@ namespace MyeStoreProject.Controllers
         {
             _context = ctx;
         }
+
         public IActionResult Index()
         {
+            ViewBag.TongSoTrang = (int)Math.Ceiling(1.0 * _context.HangHoa.Count() / SO_SP_MOI_TRANG);
             return View();
+        }
+
+        const int SO_SP_MOI_TRANG = 9;
+
+        public IActionResult LoadMore(int page = 1)
+        {
+            var result = _context.HangHoa
+                .Skip((page - 1) * SO_SP_MOI_TRANG)
+                .Take(SO_SP_MOI_TRANG)
+                .Select(p => new HangHoaViewModel
+            {
+                MaHh = p.MaHh,
+                TenHh = p.TenHh,
+                DonGia = p.DonGia.Value,
+                Hinh = MyTools.CheckImageExist(p.Hinh, "HangHoa"),
+                GiamGia = p.GiamGia,
+                NgaySX = p.NgaySx
+            });
+
+            return PartialView(result);
         }
 
         public IActionResult ServerTime()

@@ -1,0 +1,9 @@
+﻿@using Microsoft.AspNetCore.Http;
+@using MyeStoreProject.Helpers;
+@{
+    ViewData["Title"] = "Index";
+    var loai = Context.Session.GetSession<Loai>("loai");
+}
+<div>@loai.TenLoai</div>
+<div>Năm: @Context.Session.GetInt32("NamThanhLap")</div>
+<div>Tên: @Context.Session.GetString("Ten")</div>

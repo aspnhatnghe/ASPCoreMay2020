@@ -1,0 +1,13 @@
+﻿@using MyeStoreProject.ViewModels
+@model IEnumerable<HangHoaViewModel>
+
+@foreach (var hh in Model)
+{
+    <div class="hh-box">
+        <img class="hh-image" src="~/Hinh/@hh.Hinh" />
+        <h2>@hh.TenHh</h2>
+        <h3 class="text-danger">
+            @hh.GiaBan.ToString("#,##0") đ
+        </h3>
+    </div>
+}
