@@ -51,5 +51,9 @@ namespace MyeStoreProject.Controllers
         }
         #endregion
 
+        public IActionResult TimKiem()
+        {
+            return View();
+        }
     }
 }
