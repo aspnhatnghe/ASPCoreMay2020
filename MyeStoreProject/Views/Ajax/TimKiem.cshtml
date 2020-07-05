@@ -18,6 +18,7 @@
     <thead>
         <tr>
             <th>STT</th>
+            <th>Hình</th>
             <th>Tên hàng hóa</th>
             <th>Đơn giá</th>
             <th>Loại</th>
@@ -40,7 +41,20 @@
                 },
                 dataType: "json",
                 success: function (responses) {
-                    console.log(responses);
+                    $("#content").html("");
+                    $(responses).each(function (index, element) {
+                        //console.log(element.tenHh);
+                        let tr = $("<tr/>");
+                        $("<td/>").html(index + 1).appendTo(tr);
+                        //$("<td/>").html("<img src='../../Hinh/HangHoa/" + element.hinh + "'  height='80' />").appendTo(tr);
+                        $("<td/>").html("<img src='data:image/png;base64, " + element.hinh + "'  height='80' />").appendTo(tr);
+                        $("<td/>").html(element.tenHh).appendTo(tr);
+                        $("<td/>").html(element.donGia).appendTo(tr);
+                        $("<td/>").html(element.tenLoai).appendTo(tr);
+
+                        tr.appendTo($("#content"));
+                        //$("#content").append(tr);
+                    });
                 },
                 error: function (xhr) {}
             });

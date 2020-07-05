@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using MyeStoreProject.Helpers;
 using MyeStoreProject.Models;
 using MyeStoreProject.ViewModels;
 
@@ -54,6 +55,34 @@ namespace MyeStoreProject.Controllers
         public IActionResult TimKiem()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult JsonSearch(JsonSearchModel model)
+        {
+            var data = _context.HangHoa.AsQueryable();
+
+            if(!string.IsNullOrEmpty(model.TenHh))
+            {
+                data = data.Where(hh => hh.TenHh.Contains(model.TenHh));
+            }
+            if(model.GiaTu > 0)
+            {
+                data = data.Where(hh => hh.DonGia >= model.GiaTu);
+            }
+            if (model.GiaDen > 0)
+            {
+                data = data.Where(hh => hh.DonGia <= model.GiaDen);
+            }
+
+            var result = data.Select(hh => new { 
+                hh.TenHh, hh.DonGia,
+                hh.MaLoaiNavigation.TenLoai,
+                //hh.Hinh
+                Hinh = MyTools.ImageToBase64(hh.Hinh, "HangHoa")
+            }).ToList();
+
+            return Json(result);
         }
     }
 }
