@@ -25,6 +25,21 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">Xin chào @User.Identity.Name</li>
+                            <li class="nav-item">
+                                <a asp-action="Logout" asp-controller="KhachHang">Đăng xuất</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a asp-action="Login" asp-controller="KhachHang">Đăng nhập</a>
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
         </nav>
