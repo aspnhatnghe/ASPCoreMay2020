@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "671f620f-32b2-4ec4-a6ed-d4e68f7b3a56",
+		"name": "eStore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Loai",
+			"item": [
+				{
+					"name": "Get by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44361/api/Loai/1001",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44361",
+							"path": [
+								"api",
+								"Loai",
+								"1001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44361/api/Loai",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44361",
+							"path": [
+								"api",
+								"Loai"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44361/api/Loai/1001",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44361",
+							"path": [
+								"api",
+								"Loai",
+								"1001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44361/api/Loai",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44361",
+							"path": [
+								"api",
+								"Loai"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"MaLoai\":1008,\r\n    \"TenLoai\": \"Bia - Nước giải khát\",\r\n    \"MoTa\": \"chưa có\",\r\n    \"Hinh\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44361/api/Loai/1008",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44361",
+							"path": [
+								"api",
+								"Loai",
+								"1008"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "HangHoa",
+			"item": [],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
