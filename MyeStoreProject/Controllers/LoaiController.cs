@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyeStoreProject.Models;
@@ -20,6 +21,7 @@ namespace MyeStoreProject.Controllers
 
         // GET: api/Loai
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Loai>>> GetLoai()
         {
             return await _context.Loai.ToListAsync();
@@ -85,6 +87,7 @@ namespace MyeStoreProject.Controllers
 
         // DELETE: api/Loai/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "QuanTri")]
         public async Task<ActionResult<Loai>> DeleteLoai(int id)
         {
             var loai = await _context.Loai.FindAsync(id);
