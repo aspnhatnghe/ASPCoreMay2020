@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,9 +22,12 @@ namespace MyProject
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<MyDbContext>(options => {
+            services.AddDbContext<MyDbContext>(options =>
+            {
                 options.UseSqlServer(Configuration.GetConnectionString("MyConnection"));
             });
+
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,13 +48,20 @@ namespace MyProject
 
             app.UseRouting();
 
+            app.UseSession();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                  );
+
+                //    endpoints.MapControllerRoute(
+                //        name: "default",
+                //        pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
