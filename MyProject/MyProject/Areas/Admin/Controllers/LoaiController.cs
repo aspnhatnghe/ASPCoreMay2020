@@ -49,6 +49,8 @@ namespace MyProject.Areas.Admin.Controllers
         public IActionResult Create()
         {
             ViewData["MaLoaiCha"] = new SelectList(_context.Loais, "MaLoai", "TenLoai");
+
+            ViewBag.DataLoai = _context.Loais.ToList();
             return View();
         }
 
@@ -101,7 +103,7 @@ namespace MyProject.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
             {
                 try
                 {
@@ -121,8 +123,8 @@ namespace MyProject.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MaLoaiCha"] = new SelectList(_context.Loais, "MaLoai", "TenLoai", loai.MaLoaiCha);
-            return View(loai);
+            //ViewData["MaLoaiCha"] = new SelectList(_context.Loais, "MaLoai", "TenLoai", loai.MaLoaiCha);
+            //return View(loai);
         }
 
         // GET: Admin/Loai/Delete/5
