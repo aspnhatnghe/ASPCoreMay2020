@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MyProject.Common;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 namespace MyProject.DataModels
 {
@@ -21,6 +20,7 @@ namespace MyProject.DataModels
         public double DonGia { get; set; }
         [MaxLength(200)]
         public string MoTa { get; set; }
+        public string Hinh { get; set; }
         public string ChiTiet { get; set; }
         [Range(0, 100)]
         public byte GiamGia { get; set; }
@@ -28,5 +28,14 @@ namespace MyProject.DataModels
         public int? MaLoai { get; set; }
         [ForeignKey("MaLoai")]
         public Loai Loai { get; set; }
+    }
+
+    public class Hinh
+    {
+        [Key]
+        public Guid Id { get; set; }
+        public string Url { get; set; }
+        public LoaiHinh LoaiHinh { get; set; }
+        public Guid MaLoai { get; set; }
     }
 }
