@@ -4,11 +4,19 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Danh sách Loại</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="text-right">
+    <a asp-action="Create" title="Create New">
+        <img src="~/images/new.jpg" height="60"/>
+    </a>
+    <a asp-action="ImportExcel" title="Import Excel">
+        <img src="~/images/excel-import.png" height="60" />
+    </a>
+    <a asp-action="ExportExcel" title="Export Excel">
+        <img src="~/images/excel-export.png" height="60" />
+    </a>
+</div>
 <table class="table">
     <thead>
         <tr>

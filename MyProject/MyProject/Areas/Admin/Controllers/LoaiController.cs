@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyProject.DataModels;
+using OfficeOpenXml;
 
 namespace MyProject.Areas.Admin.Controllers
 {
@@ -18,6 +19,37 @@ namespace MyProject.Areas.Admin.Controllers
         {
             _context = context;
         }
+
+        #region [Import/Export Excel]
+        public IActionResult ExportExcel()
+        {
+            var dataLoai = _context.Loais.ToList();
+
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            var stream = new MemoryStream();
+            using(var package = new ExcelPackage(stream))
+            {
+                var sheet1 = package.Workbook.Worksheets.Add("Loai");
+                var sheet2 = package.Workbook.Worksheets.Add("Demo");
+
+                //đổ dữ liệu vào sheet
+                sheet1.Cells.LoadFromCollection(dataLoai, true);
+
+                Random rd = new Random();
+                sheet2.Cells[1, 1].Value = "DANH SÁCH LOẠI";
+                sheet2.Cells[1, 2].Value = rd.Next();//B1
+                sheet2.Cells[1, 3].Value = rd.Next();//C1
+                sheet2.Cells[1, 4].Formula = "=B1+C1";
+
+                package.Save();
+            }
+
+            stream.Position = 0;
+
+            var fileName = $"DSLoai_{DateTime.Now:ddMMyyyyHHmmss}.xlsx";
+            return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
+        }
+        #endregion
 
         // GET: Admin/Loai
         public async Task<IActionResult> Index()
