@@ -114,7 +114,7 @@ namespace MyProject.Areas.Admin.Controllers
                 }
 
             }
-            #region]
+            #endregion
 
             return RedirectToAction("Index");
         }
