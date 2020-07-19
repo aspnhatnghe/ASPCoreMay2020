@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyProject.DataModels;
+using MyProject.Helpers;
 using MyProject.ViewModels;
 
 namespace MyProject.Areas.Admin.Controllers
@@ -61,16 +63,25 @@ namespace MyProject.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,MaHH,TenHH,SoLuong,DonGia,MoTa,Hinh,ChiTiet,GiamGia,MaLoai")] HangHoa hangHoa)
+        public async Task<IActionResult> Create([Bind("Id,MaHH,TenHH,SoLuong,DonGia,MoTa,ChiTiet,GiamGia,MaLoai")] HangHoa hangHoa, IFormFile Hinh)
         {
             if (ModelState.IsValid)
             {
+                if (Hinh != null)
+                {
+                    hangHoa.Hinh = await MyTools.ProcessUploadHinh(Hinh, "HangHoa");
+                }
+
                 hangHoa.Id = Guid.NewGuid();
                 _context.Add(hangHoa);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MaLoai"] = new SelectList(_context.Loais, "MaLoai", "TenLoai", hangHoa.MaLoai);
+
+            ViewBag.DataLoai = new LoaiDropdownVM
+            {
+                Data = _context.Loais.ToList()
+            };
             return View(hangHoa);
         }
 

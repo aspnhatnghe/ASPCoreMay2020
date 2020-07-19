@@ -1,4 +1,5 @@
-﻿using MyProject.Models;
+﻿using Microsoft.AspNetCore.Http;
+using MyProject.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,6 +10,20 @@ namespace MyProject.Helpers
 {
     public class MyTools
     {
+        public static async Task<string> ProcessUploadHinh(IFormFile hinh, string folder)
+        {
+            string fileName = string.Empty;
+
+            var fName = Path.Combine(FullPathFolderImage, folder, hinh.FileName);
+            using(var file = new FileStream(fName, FileMode.Create))
+            {
+                await hinh.CopyToAsync(file);
+                fileName = hinh.FileName;
+            }
+
+            return fileName;
+        }
+
         public static string ImageToBase64(string fileName, string folder)
         {
             var fullPath = Path.Combine(FullPathFolderImage, folder, fileName);
@@ -22,6 +37,7 @@ namespace MyProject.Helpers
         }
 
         public static string FullPathFolderImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Hinh");
+
         public static string NoImage = "no-image-available.png";
         public static string CheckImageExist(string fileName, string folder)
         {

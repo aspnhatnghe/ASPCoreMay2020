@@ -18,7 +18,12 @@
                     var selectLoai = ViewBag.DataLoai as MyProject.ViewModels.LoaiDropdownVM;
                 }
                 @await Html.PartialAsync("../Loai/LoaiDropDown", selectLoai)
-            </div>            
+            </div>
+            <div class="form-group">
+                <label asp-for="MaHH" class="control-label"></label>
+                <input asp-for="MaHH" class="form-control" />
+                <span asp-validation-for="MaHH" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="TenHH" class="control-label"></label>
                 <input asp-for="TenHH" class="form-control" />

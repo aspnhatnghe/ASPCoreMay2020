@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Danh sách Hàng hóa</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -24,15 +24,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.DonGia)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MoTa)
-            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.Hinh)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ChiTiet)
-            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.GiamGia)
             </th>
@@ -57,15 +53,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.DonGia)
             </td>
+           
             <td>
-                @Html.DisplayFor(modelItem => item.MoTa)
+                <img src="~/Hinh/HangHoa/@item.Hinh" height="80"/>
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hinh)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ChiTiet)
-            </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.GiamGia)
             </td>
