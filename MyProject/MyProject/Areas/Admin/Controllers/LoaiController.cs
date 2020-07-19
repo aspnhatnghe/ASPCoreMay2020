@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -27,7 +29,7 @@ namespace MyProject.Areas.Admin.Controllers
 
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             var stream = new MemoryStream();
-            using(var package = new ExcelPackage(stream))
+            using (var package = new ExcelPackage(stream))
             {
                 var sheet1 = package.Workbook.Worksheets.Add("Loai");
                 var sheet2 = package.Workbook.Worksheets.Add("Demo");
@@ -48,6 +50,73 @@ namespace MyProject.Areas.Admin.Controllers
 
             var fileName = $"DSLoai_{DateTime.Now:ddMMyyyyHHmmss}.xlsx";
             return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
+        }
+
+        [HttpGet]
+        public IActionResult ImportExcel()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ImportExcel(IFormFile file)
+        {
+            if (file == null || file.Length <= 0)
+            {
+                return View();
+            }
+
+            var dsLoai = new List<Loai>();
+            #region [Đọc file]
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            using (var memoryStream = new MemoryStream())
+            {
+                file.CopyTo(memoryStream);
+
+                using (var excel = new ExcelPackage(memoryStream))
+                {
+                    var sheet1 = excel.Workbook.Worksheets["Loai"];
+                    int rowCount = sheet1.Dimension.Rows;
+
+                    for (int i = 2; i <= rowCount; i++)
+                    {
+                        var loaiTemp = new Loai
+                        {
+                            MaLoai = int.Parse(sheet1.Cells[i, 1].Value.ToString()),
+                            TenLoai = sheet1.Cells[i, 2].Value.ToString()
+                        };
+
+                        if (int.TryParse(sheet1.Cells[i, 3].Value.ToString(), out int maLoaCha))
+                        {
+                            loaiTemp.MaLoaiCha = maLoaCha;
+                        }
+
+                        dsLoai.Add(loaiTemp);
+                    }
+                }
+            }
+            #endregion
+
+            #region [Xử lý data]
+            foreach (var loai in dsLoai)
+            {
+                //dựa vào tên tìm xem loại có chưa
+                var loaiDb = _context.Loais.SingleOrDefault(p => p.TenLoai == loai.TenLoai);
+                //nếu có, update
+                if (loaiDb != null)
+                {
+
+                }
+                //nếu chưa, tạo mới
+                else
+                {
+
+                }
+
+            }
+            #region]
+
+            return RedirectToAction("Index");
         }
         #endregion
 
