@@ -20,9 +20,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="MaLoaiCha" class="control-label"></label>
-                <select asp-for="MaLoaiCha" class="form-control" asp-items="ViewBag.MaLoaiCha">
-                    <option>---Không có loại cha---</option>
-                </select>
+                @{
+                    var selectLoai = ViewBag.DataLoai as MyProject.ViewModels.LoaiDropdownVM;
+                }
+                @await Html.PartialAsync("LoaiDropDown", selectLoai)
                 <span asp-validation-for="MaLoaiCha" class="text-danger"></span>
             </div>
             <div class="form-group">

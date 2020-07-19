@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyProject.DataModels;
+using MyProject.ViewModels;
 using OfficeOpenXml;
 
 namespace MyProject.Areas.Admin.Controllers
@@ -151,7 +152,10 @@ namespace MyProject.Areas.Admin.Controllers
         {
             ViewData["MaLoaiCha"] = new SelectList(_context.Loais, "MaLoai", "TenLoai");
 
-            ViewBag.DataLoai = _context.Loais.ToList();
+            ViewBag.DataLoai = new LoaiDropdownVM
+            {
+                Data = _context.Loais.ToList()
+            };
             return View();
         }
 
@@ -188,7 +192,13 @@ namespace MyProject.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["MaLoaiCha"] = new SelectList(_context.Loais, "MaLoai", "TenLoai", loai.MaLoaiCha);
+            //ViewData["MaLoaiCha"] = new SelectList(_context.Loais, "MaLoai", "TenLoai", loai.MaLoaiCha);
+            ViewBag.DataLoai = new LoaiDropdownVM
+            {
+                Data = _context.Loais.ToList(),
+                Selected = loai.MaLoaiCha
+            };
+
             return View(loai);
         }
 

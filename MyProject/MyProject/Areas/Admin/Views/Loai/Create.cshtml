@@ -22,35 +22,11 @@
                 @*<select asp-for="MaLoaiCha" class ="form-control" asp-items="ViewBag.MaLoaiCha">
                         <option>---Không có loại cha---</option>
                     </select>*@
-            <select name="MaLoaiCha" id="MaLoaiCha" class="form-control">
-                <option>---Không có loại cha---</option>
-                @{
-                    var selectLoaiData = ViewBag.DataLoai as List<MyProject.DataModels.Loai>;
-
-                    var level1 = selectLoaiData.Where(p => p.MaLoaiCha == null);
-                    @foreach (var lv1 in level1)
-                    {
-                        var level2 = selectLoaiData.Where(p => p.MaLoaiCha == lv1.MaLoai).ToList();
-                        <option value="@lv1.MaLoai">@lv1.TenLoai</option>
-                        if (level2.Count > 0)
-                        {
-                            @foreach (var lv2 in level2)
-                            {
-                                var level3 = selectLoaiData.Where(p => p.MaLoaiCha == lv2.MaLoai).ToList();
-            <option value="@lv2.MaLoai">|_____@lv2.TenLoai</option>
-                                if (level3.Count > 0)
-                                {
-                                    @foreach (var lv3 in level3)
-                                    {
-            <option value="@lv3.MaLoai">|__________@lv3.TenLoai</option>
-
-                                    }
-                                }
-                            }
-                        }
-                    }
+                @{ 
+                    var selectLoai = ViewBag.DataLoai as MyProject.ViewModels.LoaiDropdownVM;
                 }
-            </select>
+                @await Html.PartialAsync("LoaiDropDown", selectLoai)
+            
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
