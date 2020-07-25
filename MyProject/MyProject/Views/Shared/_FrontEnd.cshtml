@@ -152,102 +152,8 @@
                                             </ul>
                                         </div>
                                     </li>
-                                    <li>
-                                        <a href="product-details.html">Book<i class="fa fa-angle-down"></i></a>
-                                        <div class="mega-menu">
-                                            <span>
-                                                <a href="#" class="title">Jackets</a>
-                                                <a href="shop.html">Tops & Tees</a>
-                                                <a href="shop.html">Polo Short Sleeve</a>
-                                                <a href="shop.html">Graphic T-Shirts</a>
-                                                <a href="shop.html">Jackets & Coats</a>
-                                                <a href="shop.html">Fashion Jackets</a>
-                                            </span>
-                                            <span>
-                                                <a href="#" class="title">weaters</a>
-                                                <a href="shop.html">Crochet</a>
-                                                <a href="shop.html">Sleeveless</a>
-                                                <a href="shop.html">Stripes</a>
-                                                <a href="shop.html">Sweaters</a>
-                                                <a href="shop.html">hoodies</a>
-                                            </span>
-                                            <span>
-                                                <a href="#" class="title">Bottoms</a>
-                                                <a href="shop.html">Heeled sandals</a>
-                                                <a href="shop.html">Polo Short Sleeve</a>
-                                                <a href="shop.html">Flat sandals</a>
-                                                <a href="shop.html">Short Sleeve</a>
-                                                <a href="shop.html">Long Sleeve</a>
-                                            </span>
-                                            <span>
-                                                <a href="#" class="title">Jeans Pants</a>
-                                                <a href="shop.html">Polo Short Sleeve</a>
-                                                <a href="shop.html">Sleeveless</a>
-                                                <a href="shop.html">Graphic T-Shirts</a>
-                                                <a href="shop.html">Hoodies</a>
-                                                <a href="shop.html">Jackets</a>
-                                            </span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a href="product-details.html">Audio books<i class="fa fa-angle-down"></i></a>
-                                        <div class="mega-menu">
-                                            <span>
-                                                <a href="#" class="title">Shirts</a>
-                                                <a href="shop.html">Tops & Tees</a>
-                                                <a href="shop.html">Sweaters </a>
-                                                <a href="shop.html">Hoodies</a>
-                                                <a href="shop.html">Jackets & Coats</a>
-                                            </span>
-                                            <span>
-                                                <a href="#" class="title">Tops & Tees</a>
-                                                <a href="shop.html">Long Sleeve </a>
-                                                <a href="shop.html">Short Sleeve</a>
-                                                <a href="shop.html">Polo Short Sleeve</a>
-                                                <a href="shop.html">Sleeveless</a>
-                                            </span>
-                                            <span>
-                                                <a href="#" class="title">Jackets</a>
-                                                <a href="shop.html">Sweaters</a>
-                                                <a href="shop.html">Hoodies</a>
-                                                <a href="shop.html">Wedges</a>
-                                                <a href="shop.html">Vests</a>
-                                            </span>
-                                            <span>
-                                                <a href="#" class="title">Jeans Pants</a>
-                                                <a href="shop.html">Polo Short Sleeve</a>
-                                                <a href="shop.html">Sleeveless</a>
-                                                <a href="shop.html">Graphic T-Shirts</a>
-                                                <a href="shop.html">Hoodies</a>
-                                            </span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a href="product-details.html">children’s books<i class="fa fa-angle-down"></i></a>
-                                        <div class="mega-menu mega-menu-2">
-                                            <span>
-                                                <a href="#" class="title">Tops</a>
-                                                <a href="shop.html">Shirts</a>
-                                                <a href="shop.html">Florals</a>
-                                                <a href="shop.html">Crochet</a>
-                                                <a href="shop.html">Stripes</a>
-                                            </span>
-                                            <span>
-                                                <a href="#" class="title">Bottoms</a>
-                                                <a href="shop.html">Shorts</a>
-                                                <a href="shop.html">Dresses</a>
-                                                <a href="shop.html">Trousers</a>
-                                                <a href="shop.html">Jeans</a>
-                                            </span>
-                                            <span>
-                                                <a href="#" class="title">Shoes</a>
-                                                <a href="shop.html">Heeled sandals</a>
-                                                <a href="shop.html">Flat sandals</a>
-                                                <a href="shop.html">Wedges</a>
-                                                <a href="shop.html">Ankle boots</a>
-                                            </span>
-                                        </div>
-                                    </li>
+                                    @await Component.InvokeAsync("MenuNgang")
+                                    
                                     <li>
                                         <a href="#">blog<i class="fa fa-angle-down"></i></a>
                                         <div class="sub-menu sub-menu-2">
@@ -289,8 +195,18 @@
         <!-- main-menu-area-end -->
     </header>
     <!-- header-area-end -->
-    <div>
-        @RenderBody()
+    <!-- breadcrumbs-area-start -->
+    @RenderSection("breadcrumbs", required: false)
+    <!-- breadcrumbs-area-end -->
+    <!-- main-arera-start -->
+    <div class="shop-main-area mb-70">
+        <div class="container">
+            @RenderBody()
+        </div>
     </div>
+    <!-- main-arera-end -->
+    <!-- footer-area-start -->    
+    @await Html.PartialAsync("_MyFooter")
+    <!-- footer-area-end -->    
 </body>
 </html>
