@@ -8,6 +8,9 @@ namespace MyProject.DataModels
         {
         }
 
+        public DbSet<ChiTietDonHang> ChiTietDonHangs { get; set; }
+        public DbSet<DonHang> DonHangs { get; set; }
+        public DbSet<KhachHang> KhachHangs { get; set; }
         public DbSet<Loai> Loais { get; set; }
         public DbSet<HangHoa> HangHoas { get; set; }
         public DbSet<Hinh> Hinhs { get; set; }
