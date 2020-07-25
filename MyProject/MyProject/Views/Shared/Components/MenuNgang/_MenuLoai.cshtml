@@ -6,16 +6,16 @@
 {
     var LoaiLV2 = Model.Where(p => p.MaLoaiCha == lv1.MaLoai).ToList();
     <li>
-        <a href="product-details.html">@lv1.TenLoai<i class="fa fa-angle-down"></i></a>
+        <a asp-action="Index" asp-controller="HangHoa" asp-route-MaLoai="@lv1.MaLoai">@lv1.TenLoai<i class="fa fa-angle-down"></i></a>
         <div class="mega-menu">
             @foreach (var lv2 in LoaiLV2)
             {
                 var LoaiLV3 = Model.Where(p => p.MaLoaiCha == lv2.MaLoai).ToList();
                 <span>
-                    <a href="#" class="title">@lv2.TenLoai</a>
+                    <a  asp-action="Index" asp-controller="HangHoa" asp-route-MaLoai="@lv2.MaLoai" class="title">@lv2.TenLoai</a>
                     @foreach (var lv3 in LoaiLV3)
                     {
-                        <a href="shop.html">@lv3.TenLoai</a>
+                        <a  asp-action="Index" asp-controller="HangHoa" asp-route-MaLoai="@lv3.MaLoai">@lv3.TenLoai</a>
                     }
                 </span>
             }

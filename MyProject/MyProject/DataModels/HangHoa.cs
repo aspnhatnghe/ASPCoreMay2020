@@ -12,7 +12,7 @@ namespace MyProject.DataModels
         [Key]
         public Guid Id { get; set; }
         [MaxLength(10)]
-        public string MaHH { get; set; }
+        public string SKU { get; set; }
         [MaxLength(100)]
         [Required]
         public string TenHH { get; set; }
@@ -30,6 +30,7 @@ namespace MyProject.DataModels
         public Loai Loai { get; set; }
     }
 
+    [Table("Hinh")]
     public class Hinh
     {
         [Key]
