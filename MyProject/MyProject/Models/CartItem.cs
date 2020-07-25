@@ -1,10 +1,14 @@
 ﻿using MyProject.ViewModels;
+using System;
 
 namespace MyProject.Models
 {
-    public class CartItem : ProductViewModel
+    public class CartItem
     {
-        public int Quantity { get; set; }
-        public double Total => Quantity * Price;
+        public Guid Id { get; set; }
+        public string TenHH { get; set; }
+        public int SoLuong { get; set; }
+        public double DonGia { get; set; }
+        public double ThanhTien => SoLuong * DonGia;
     }
 }

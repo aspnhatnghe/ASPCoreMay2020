@@ -18,10 +18,10 @@ namespace MyProject.DataModels
         public bool TrangThai { get; set; } /*1: Active, 0: InActive*/
         public Role VaiTro { get; set; }
 
-        public ICollection<HoaDon> HoaDons { get; set; }
+        public ICollection<DonHang> DonHangs { get; set; }
         public KhachHang()
         {
-            HoaDons = new HashSet<HoaDon>();
+            DonHangs = new HashSet<DonHang>();
         }
     }
 }
