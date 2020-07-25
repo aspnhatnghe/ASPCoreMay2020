@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyProject.DataModels
@@ -9,7 +10,7 @@ namespace MyProject.DataModels
         [Key]
         public int MaCtDh { get; set; }
         public long MaDonHang { get; set; }
-        public int MaHangHoa { get; set; }
+        public Guid MaHangHoa { get; set; }
         public int SoLuong { get; set; }
         public double DonGia { get; set; }
         [ForeignKey("MaDonHang")]
