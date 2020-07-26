@@ -10,6 +10,8 @@ namespace MyProject.Models
         {
             CreateMap<HangHoa, HangHoaViewModel>()
                 .ReverseMap();
+            CreateMap<HangHoa, CartItem>()
+                .ForMember(ci => ci.DonGia, opt => opt.MapFrom(hh => hh.DonGia * (100 -hh.GiamGia)/ 100.0));
         }
     }
 }

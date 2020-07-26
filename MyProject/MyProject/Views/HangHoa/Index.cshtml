@@ -88,11 +88,11 @@
                                 </div>
                                 <div class="product-link">
                                     <div class="product-button">
-                                        <a href="#" title="Add to cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@hh.Id" title="Mua hàng"><i class="fa fa-shopping-cart"></i>Mua hàng</a>
                                     </div>
                                     <div class="add-to-link">
                                         <ul>
-                                            <li><a href="product-details.html" title="Details"><i class="fa fa-external-link"></i></a></li>
+                                            <li><a asp-action="Detail" asp-route-id="@hh.Id" title="Chi tiết"><i class="fa fa-external-link"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>

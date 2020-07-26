@@ -12,4 +12,10 @@ namespace MyProject.Models
         public double DonGia { get; set; }
         public double ThanhTien => SoLuong * DonGia;
     }
+
+    public class CartInfo
+    {
+        public int SoLuong { get; set; }
+        public double TongTien { get; set; }
+    }
 }
