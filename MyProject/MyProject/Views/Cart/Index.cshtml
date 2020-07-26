@@ -35,7 +35,10 @@
                                 <td class="product-price"><span class="amount">@item.DonGia.ToVnd()</span></td>
                                 <td class="product-quantity"><input type="number" value="@item.SoLuong"></td>
                                 <td class="product-subtotal">@item.ThanhTien.ToVnd()</td>
-                                <td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
+                                <td class="product-remove">
+                                <a asp-action="RemoveCartItem" asp-route-id="@item.Id"><i class="fa fa-times"></i></a>
+                                    <span class="remove-cart-item" data-id="@item.Id"><i class="fa fa-times"></i></span>
+                                </td>
                             </tr>
                         }
                     </tbody>
@@ -107,3 +110,25 @@
         </div>
     </div>
 </div>
+@section Scripts{ 
+<script>
+    $(function () {
+        $(".remove-cart-item").click(function () {
+            let removedRow = $(this).closest("tr");
+            $.ajax({
+                url: "/Cart/RemoveCartItem",
+                data: {
+                    id: $(this).data("id"),
+                    isAjaxCall: true
+                },
+                success: function (response) {
+                    alert("Thành công");
+                    console.log(response);
+                    removedRow.remove();
+                }
+            });
+        });
+    });
+</script>
+
+}

@@ -75,5 +75,29 @@ namespace MyProject.Controllers
             SoLuong = CartItems.Count,
             TongTien = CartItems.Sum(p => p.ThanhTien)
         };
+
+        public IActionResult RemoveCartItem(Guid id, bool isAjaxCall = false)
+        {
+            //lấy cart đang có
+            var myCart = CartItems;
+
+            //xử lý
+            var cartItem = myCart.SingleOrDefault(p => p.Id == id);
+            if (cartItem != null)
+            {
+                myCart.Remove(cartItem);
+            }            
+
+            //update cart
+            HttpContext.Session.SetSession("GioHang", myCart);
+
+            //chuyển hướng
+            if (isAjaxCall)
+            {
+                return Json(CartInfo);
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
