@@ -29,7 +29,7 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
+                            <tr class="cart-item-@item.Id">
                                 <td class="product-thumbnail"><a asp-action="Detail" asp-controller="HangHoa" asp-route-id="@item.Id"><img src="~/Hinh/HangHoa/@item.Hinh" alt="man" /></a></td>
                                 <td class="product-name"><a href="#">@item.TenHH</a></td>
                                 <td class="product-price"><span class="amount">@item.DonGia.ToVnd()</span></td>
@@ -111,24 +111,31 @@
     </div>
 </div>
 @section Scripts{ 
-<script>
+    <script>
     $(function () {
         $(".remove-cart-item").click(function () {
-            let removedRow = $(this).closest("tr");
+            //let removedRow = $(this).closest("tr");
+            let cartItemId = $(this).data("id");
             $.ajax({
                 url: "/Cart/RemoveCartItem",
                 data: {
-                    id: $(this).data("id"),
+                    id: cartItemId,
                     isAjaxCall: true
                 },
                 success: function (response) {
-                    alert("Thành công");
-                    console.log(response);
-                    removedRow.remove();
+                    $("#CartItemCount").html(response.soLuong);
+                    //removedRow.remove();
+                    $(".cart-item-" + cartItemId).remove();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Xóa thành công',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
                 }
             });
         });
     });
-</script>
+    </script>
 
 }

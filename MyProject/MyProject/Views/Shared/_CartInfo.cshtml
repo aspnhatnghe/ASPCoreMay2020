@@ -1,0 +1,40 @@
+﻿@using MyProject.Helpers;
+@{     
+    var myCart = Context.Session.GetSession<List<CartItem>>("GioHang");
+    if (myCart == null)
+    {
+        myCart = new List<CartItem>();
+    }
+}
+<ul>
+    <li>
+        <a asp-controller="Cart"><i class="fa fa-shopping-cart"></i>Giỏ hàng</a>
+        <span id="CartItemCount">@myCart.Count</span>
+        <div class="mini-cart-sub">
+            <div class="cart-product">
+                @foreach (var item in myCart)
+                {
+                <div class="single-cart cart-item-@item.Id">
+                    <div class="cart-img">
+                        <a asp-action="Detail" asp-controller="HangHoa" asp-route-id="@item.Id"><img src="~/Hinh/HangHoa/@item.Hinh" alt="man" /></a>
+                    </div>
+                    <div class="cart-info">
+                        <h5><a href="#">@item.TenHH</a></h5>
+                        <p>@item.SoLuong x @item.DonGia.ToVnd()</p>
+                    </div>
+                    <div class="cart-icon">
+                        <a href="#"><i class="fa fa-remove"></i></a>
+                    </div>
+                </div>
+                }
+            </div>
+            <div class="cart-totals">
+                <h5>Tổng tiền <span>@myCart.Sum(p=>p.ThanhTien).ToVnd()</span></h5>
+            </div>
+            <div class="cart-bottom">
+                <a class="view-cart" href="cart.html">view cart</a>
+                <a href="checkout.html">Check out</a>
+            </div>
+        </div>
+    </li>
+</ul>
