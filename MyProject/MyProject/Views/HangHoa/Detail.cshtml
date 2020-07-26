@@ -62,11 +62,11 @@
                             </div>
                         </div>
                         <div class="product-add-form">
-                            <form action="#">
+                            <form asp-action="AddToCart" asp-controller="Cart" asp-route-id="@Model.Id">
                                 <div class="quality-button">
-                                    <input class="qty" type="number" value="1">
+                                    <input class="qty" type="number" value="1" min="1" max="@Model.SoLuong" name="soLuong">
                                 </div>
-                                <a href="#">Add to cart</a>
+                                <a href="#" class="push-to-cart">Mua hàng</a>
                             </form>
                         </div>
                         <div class="product-social-links">
@@ -579,3 +579,14 @@
         </div>
     </div>
 </div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("a.push-to-cart").click(function (ev) {
+                ev.preventDefault();
+                let form = $(this).closest("form");
+                form.submit();
+            });
+        });
+    </script>
+}

@@ -153,7 +153,7 @@
                                         </div>
                                     </li>
                                     @await Component.InvokeAsync("MenuNgang")
-                                    
+
                                     <li>
                                         <a href="#">blog<i class="fa fa-angle-down"></i></a>
                                         <div class="sub-menu sub-menu-2">
@@ -205,8 +205,12 @@
         </div>
     </div>
     <!-- main-arera-end -->
-    <!-- footer-area-start -->    
+    <!-- footer-area-start -->
     @await Html.PartialAsync("_MyFooter")
-    <!-- footer-area-end -->    
+    <!-- footer-area-end -->
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
