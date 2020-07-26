@@ -21,7 +21,7 @@ namespace MyProject.DataModels
                 .Property(p => p.Hinh)
                 .HasMaxLength(150);
             modelBuilder.Entity<HangHoa>()
-                .HasIndex(p => p.SKU)
+                .HasIndex(p => p.MaHH)
                 .IsUnique();
         }
     }

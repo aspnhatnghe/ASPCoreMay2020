@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -53,7 +52,8 @@ namespace MyProject.Areas.Admin.Controllers
         {
             ViewBag.DataLoai = new LoaiDropdownVM
             {
-                Data = _context.Loais.ToList()
+                Data = _context.Loais.ToList(),
+                FileName = "MaLoai"
             };
             return View();
         }
@@ -80,7 +80,8 @@ namespace MyProject.Areas.Admin.Controllers
 
             ViewBag.DataLoai = new LoaiDropdownVM
             {
-                Data = _context.Loais.ToList()
+                Data = _context.Loais.ToList(),
+                FileName = "MaLoai"
             };
             return View(hangHoa);
         }

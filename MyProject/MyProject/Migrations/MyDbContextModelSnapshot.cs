@@ -95,16 +95,16 @@ namespace MyProject.Migrations
                         .HasColumnType("nvarchar(150)")
                         .HasMaxLength(150);
 
+                    b.Property<string>("MaHH")
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
+
                     b.Property<int?>("MaLoai")
                         .HasColumnType("int");
 
                     b.Property<string>("MoTa")
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
-
-                    b.Property<string>("SKU")
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
 
                     b.Property<int>("SoLuong")
                         .HasColumnType("int");
@@ -116,11 +116,11 @@ namespace MyProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MaLoai");
-
-                    b.HasIndex("SKU")
+                    b.HasIndex("MaHH")
                         .IsUnique()
-                        .HasFilter("[SKU] IS NOT NULL");
+                        .HasFilter("[MaHH] IS NOT NULL");
+
+                    b.HasIndex("MaLoai");
 
                     b.ToTable("HangHoa");
                 });
@@ -142,7 +142,7 @@ namespace MyProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Hinh");
+                    b.ToTable("Hinhs");
                 });
 
             modelBuilder.Entity("MyProject.DataModels.KhachHang", b =>

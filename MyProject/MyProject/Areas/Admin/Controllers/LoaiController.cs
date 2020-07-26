@@ -154,7 +154,8 @@ namespace MyProject.Areas.Admin.Controllers
 
             ViewBag.DataLoai = new LoaiDropdownVM
             {
-                Data = _context.Loais.ToList()
+                Data = _context.Loais.ToList(),
+                FileName = "MaLoaiCha"
             };
             return View();
         }
@@ -196,7 +197,8 @@ namespace MyProject.Areas.Admin.Controllers
             ViewBag.DataLoai = new LoaiDropdownVM
             {
                 Data = _context.Loais.ToList(),
-                Selected = loai.MaLoaiCha
+                Selected = loai.MaLoaiCha,
+                FileName = "MaLoaiCha"
             };
 
             return View(loai);

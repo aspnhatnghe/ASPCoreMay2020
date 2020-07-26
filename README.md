@@ -7,3 +7,4 @@ Ref: https://garywoodfine.com/generic-repository-pattern-net-core/
 
 ## Buổi 01: Dựng Model, Database
 ## Buổi 02: Excel - EPPlus
+## Buổi 03: Thiết kế DB (Khách hàng, Đơn hàng), Layout frontend

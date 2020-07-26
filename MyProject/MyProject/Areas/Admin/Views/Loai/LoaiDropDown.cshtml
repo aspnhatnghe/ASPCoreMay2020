@@ -1,6 +1,6 @@
 ﻿@model MyProject.ViewModels.LoaiDropdownVM
 
-<select name="MaLoaiCha" id="MaLoaiCha" class="form-control">
+<select name="@Model.FileName" id="@Model.FileName" class="form-control">
     <option>---Không có loại cha---</option>
     @{
         var selectLoaiData = Model.Data;

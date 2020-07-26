@@ -10,5 +10,6 @@ namespace MyProject.ViewModels
     {
         public List<Loai> Data { get; set; }
         public int? Selected { get; set; }
+        public string FileName { get; set; }
     }
 }
