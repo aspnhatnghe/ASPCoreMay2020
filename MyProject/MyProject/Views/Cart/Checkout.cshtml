@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<h2>Checkout</h2>
+
+<form asp-action="ProcessCheckout">
+    <div class="row">
+        <label class="col-3">Họ tên người mua</label>
+        <div class="col-9">
+            <input name="NguoiMua" />
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-3">Email</label>
+        <div class="col-9">
+            <input name="Email" type="email" />
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-3">Điện thoại</label>
+        <div class="col-9">
+            <input name="DienThoai" />
+        </div>
+    </div>
+    <button>Thanh toán</button>
+</form>
