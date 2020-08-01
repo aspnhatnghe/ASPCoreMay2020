@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +32,12 @@ namespace MyProject
             });
 
             services.AddSession();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(opt => {
+                opt.LoginPath = "/KhachHang/DangNhap";
+                opt.LogoutPath = "/KhachHang/DangXuat";
+                opt.AccessDeniedPath = "/Home/AccessDenied";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +59,8 @@ namespace MyProject
             app.UseRouting();
 
             app.UseSession();
+            
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
